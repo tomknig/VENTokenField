@@ -22,7 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class VENTokenField;
+@class VENTokenField, VENBackspaceTextField;
 @protocol VENTokenFieldDelegate <NSObject>
 @optional
 - (void)tokenField:(VENTokenField *)tokenField didEnterText:(NSString *)text;
@@ -43,6 +43,7 @@
 
 @property (weak, nonatomic) id<VENTokenFieldDelegate> delegate;
 @property (weak, nonatomic) id<VENTokenFieldDataSource> dataSource;
+@property (readonly, strong, nonatomic) VENBackspaceTextField *inputTextField;
 
 - (void)reloadData;
 - (void)collapse;
