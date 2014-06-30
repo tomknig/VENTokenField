@@ -23,6 +23,11 @@
     self.tokenField.delegate = self;
     self.tokenField.dataSource = self;
     [self.tokenField setColorScheme:[UIColor colorWithRed:61/255.0f green:149/255.0f blue:206/255.0f alpha:1.0f]];
+    
+    self.tokenField.verticalInset = 0;
+    self.tokenField.horizontalInset = 0;
+    self.tokenField.descriptingText = @"Tags:";
+    [self.tokenField reloadLayout];
 }
 
 - (IBAction)didTapCollapseButton:(id)sender

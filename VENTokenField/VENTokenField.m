@@ -257,9 +257,28 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
         _toLabel.text = NSLocalizedString(@"To:", nil);
         _toLabel.x = 0;
         [_toLabel sizeToFit];
-        [_toLabel setHeight:[self heightForToken]];
+        _toLabel.height = [self heightForToken];
     }
     return _toLabel;
+}
+
+- (void)setDescriptingText:(NSString *)descriptingText
+{
+    _descriptingText = descriptingText;
+    
+    self.toLabel.text = descriptingText;
+    self.inputTextField.accessibilityLabel = descriptingText;
+    
+    [self.toLabel sizeToFit];
+    self.toLabel.height = [self heightForToken];
+}
+
+- (void)reloadLayout
+{
+    [self layoutInvisibleTextField];
+    [self layoutScrollView];
+    
+    [self reloadData];
 }
 
 - (void)adjustHeightForCurrentY:(CGFloat)currentY

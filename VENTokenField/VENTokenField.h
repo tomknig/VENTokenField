@@ -61,10 +61,12 @@
 
 @property (strong, nonatomic) UIColor *toLabelTextColor;
 @property (strong, nonatomic) UIColor *inputTextFieldTextColor;
+@property (strong, nonatomic) NSString *descriptingText;
 
 @property (strong, nonatomic) UILabel *toLabel;
 
 - (void)setColorScheme:(UIColor *)color;
+- (void)reloadLayout;
 
 @end
 
