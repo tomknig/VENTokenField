@@ -44,6 +44,7 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
 @property (readwrite, strong, nonatomic) VENBackspaceTextField *inputTextField;
 @property (strong, nonatomic) UIColor *colorScheme;
 @property (strong, nonatomic) UILabel *collapsedLabel;
+@property (strong, nonatomic) UIFont *font;
 
 @end
 
@@ -54,6 +55,17 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self setUpInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+                         font:(UIFont *)font
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.font = font;
         [self setUpInit];
     }
     return self;
@@ -148,7 +160,6 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
     }
 }
 
-
 #pragma mark - View Layout
 
 - (void)layoutScrollView
@@ -183,7 +194,7 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
 - (void)layoutCollapsedLabelWithCurrentX:(CGFloat *)currentX
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(*currentX, CGRectGetMinY(self.toLabel.frame), self.width - *currentX - self.horizontalInset, self.toLabel.height)];
-    label.font = [UIFont fontWithName:@"HelveticaNeue" size:15.5];
+    label.font = self.font ? self.font : [UIFont fontWithName:@"HelveticaNeue" size:15.5];
     label.text = [self collapsedText];
     label.textColor = self.colorScheme;
     label.minimumScaleFactor = 5./label.font.pointSize;
@@ -253,7 +264,7 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
     if (!_toLabel) {
         _toLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _toLabel.textColor = self.toLabelTextColor;
-        _toLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15.5];
+        _toLabel.font = self.font ? self.font : [UIFont fontWithName:@"HelveticaNeue" size:15.5];
         _toLabel.text = NSLocalizedString(@"To:", nil);
         _toLabel.x = 0;
         [_toLabel sizeToFit];
@@ -303,7 +314,7 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
     if (!_inputTextField) {
         _inputTextField = [[VENBackspaceTextField alloc] init];
         _inputTextField.textColor = self.inputTextFieldTextColor;
-        _inputTextField.font = [UIFont fontWithName:@"HelveticaNeue" size:15.5];
+        _inputTextField.font = self.font ? self.font : [UIFont fontWithName:@"HelveticaNeue" size:15.5];
         _inputTextField.accessibilityLabel = NSLocalizedString(@"To", nil);
         _inputTextField.autocorrectionType = UITextAutocorrectionTypeNo;
         _inputTextField.tintColor = self.colorScheme;
