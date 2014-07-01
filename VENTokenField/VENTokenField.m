@@ -60,10 +60,31 @@ static const CGFloat VENTokenFieldDefaultMaxHeight          = 150.0;
     return self;
 }
 
+- (instancetype)initWithFont:(UIFont *)font
+{
+    self = [super init];
+    if (self) {
+        self.font = font;
+        [self setUpInit];
+    }
+    return self;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
                          font:(UIFont *)font
 {
     self = [super initWithFrame:frame];
+    if (self) {
+        self.font = font;
+        [self setUpInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+               font:(UIFont *)font
+{
+    self = [super initWithCoder:aDecoder];
     if (self) {
         self.font = font;
         [self setUpInit];

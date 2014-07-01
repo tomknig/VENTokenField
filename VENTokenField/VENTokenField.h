@@ -54,7 +54,9 @@
  * -----------------------------------------------------------------------------
  */
 
+- (instancetype)initWithFont:(UIFont *)font;
 - (instancetype)initWithFrame:(CGRect)frame font:(UIFont *)font;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder font:(UIFont *)font;
 
 @property (assign, nonatomic) CGFloat maxHeight;
 @property (assign, nonatomic) CGFloat verticalInset;
